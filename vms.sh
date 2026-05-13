@@ -6,8 +6,9 @@ utility functions that aims to simplify using vms on the command line:"
 _setup_vm_actions() {
     source "${SCRIPTS}/core.sh"
 
-    DISKS="vms/disks"
-    ISOS="vms/isos"
+    VMDIR=${VMDIR:-vms}
+    DISKS="${VMDIR}/disks"
+    ISOS="${VMDIR}/isos"
 
     run() {
         NAME="${1:-centos-15g}"
