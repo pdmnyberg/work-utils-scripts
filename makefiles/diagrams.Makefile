@@ -1,7 +1,7 @@
 SRCDIR?=src
 OUTDIR?=output
 SOURCES=$(wildcard $(SRCDIR)/*.gv.txt)
-FORMAT=png
+FORMAT?=png
 
 
 $(OUTDIR)/%.$(FORMAT): $(SRCDIR)/%.gv.txt
