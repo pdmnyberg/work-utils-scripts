@@ -21,14 +21,5 @@ VMDIR="./test/vms"
 
 MANAGE_SCRIPT="${SCRIPTS}/manage.sh"
 source "${MANAGE_SCRIPT}"
-source "${SCRIPTS}/core.sh"
-
-TC="\e[0;31m"
-SC="\e[0;32m"
-NC="\e[0m"
-_info "${TC}Notice${NC}: This is a wrapper script for ${SC}'${MANAGE_SCRIPT}'${NC}. Use \
-${SC}'source ${MANAGE_SCRIPT}'${NC} in order to get a real 'manage' command \
-with auto completions.
-"
 
 manage "$@"
