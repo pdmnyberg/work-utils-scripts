@@ -1,8 +1,24 @@
 #!/bin/bash
 
-# This script is an alias for "scripts/manage.sh"
+# This script is a configurable alias for "scripts/manage.sh"
 
-SCRIPTS="scripts"
+###########################################################
+# Configuration section
+# ---------------------------------------------------------
+# Use this section to configure the directories to use when
+# running the utility scripts.
+# Make a copy of the script and place it where it is
+# conveniently available. Change 'SCRIPTS' to point to the
+# folder containing the utility script `manage.sh`.
+###########################################################
+SCRIPTS="."
+PRESENTATIONS_PATH="./test/presentations"
+DIAGRAMS_PATH="./test/diagrams"
+VMDIR="./test/vms"
+###########################################################
+# End configuration section
+###########################################################
+
 MANAGE_SCRIPT="${SCRIPTS}/manage.sh"
 source "${MANAGE_SCRIPT}"
 source "${SCRIPTS}/core.sh"
