@@ -9,10 +9,12 @@ _setup_actions() {
     ADDITIONAL_HELP=()
 
     help() {
-        INDENT=$(printf '%*s' "$1")
-        if [[ -z $INDENT ]]
+        INDENT=""
+        if [ "$#" -gt 0 ]
         then
-            echo "$INDENT$HELP_TEXT"
+            INDENT=$(printf '%*s' "$1")
+        else
+            echo "$HELP_TEXT"
         fi
         local AC='\e[0;32m'
         local NC='\e[0m'
