@@ -14,21 +14,23 @@ _setup_presentation_actions() {
     PRESENTATIONS_COMMON_STYLE="${PRESENTATIONS_COMMON_STYLE:-$PRESENTATIONS_SRC/common_style.tex}"
 
     _run_container() {
-        ${DOCKER} build --tag "${DOCUMENT_BUILDER_NAME}" -f "${SCRIPTS}/containers/document-builder.Dockerfile" "${SCRIPTS}"
-		${DOCKER} run \
-			-it \
-			--rm \
-			--user "$(id -u):$(id -g)" \
+        ${DOCKER} build \
+            --tag "${DOCUMENT_BUILDER_NAME}" \
+            -f "${SCRIPTS}/containers/document-builder.Dockerfile" \
+            "${SCRIPTS}"
+        ${DOCKER} run \
+            -it \
+            --rm \
+            --user "$(id -u):$(id -g)" \
             -e SRC="$PRESENTATIONS_SRC" \
             -e COMMON_STYLE="$PRESENTATIONS_COMMON_STYLE" \
-			-v ./:/opt/output \
-			"$@"
-	}
+            "$@"
+    }
 
     build() {
         _run_container \
             -v "${PRESENTATIONS_PATH}:/opt/build/presentations" \
-            -v "./makefiles/presentations.Makefile:/opt/build/Makefile" \
+            -v "${SCRIPTS}/makefiles/presentations.Makefile:/opt/build/Makefile" \
             --workdir=/opt/build/presentations \
             "${DOCUMENT_BUILDER_NAME}" make -f ../Makefile "$@"
     }
@@ -36,7 +38,7 @@ _setup_presentation_actions() {
     build-diagrams() {
         _run_container \
             -v "${DIAGRAMS_PATH}:/opt/build/diagrams" \
-            -v "./makefiles/diagrams.Makefile:/opt/build/Makefile" \
+            -v "${SCRIPTS}/makefiles/diagrams.Makefile:/opt/build/Makefile" \
             --workdir=/opt/build/diagrams \
             "${DOCUMENT_BUILDER_NAME}" make -f ../Makefile "$@"
     }
