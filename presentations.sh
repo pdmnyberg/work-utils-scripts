@@ -10,6 +10,8 @@ _setup_presentation_actions() {
     DOCUMENT_BUILDER_NAME="document-builder"
     PRESENTATIONS_PATH="${PRESENTATIONS_PATH:-./presentations}"
     DIAGRAMS_PATH="${DIAGRAMS_PATH:-./presentations}"
+    PRESENTATIONS_SRC="${PRESENTATIONS_SRC:-src}"
+    PRESENTATIONS_COMMON_STYLE="${PRESENTATIONS_COMMON_STYLE:-$PRESENTATIONS_SRC/common_style.tex}"
 
     _run_container() {
         ${DOCKER} build --tag "${DOCUMENT_BUILDER_NAME}" -f "${SCRIPTS}/containers/document-builder.Dockerfile" "${SCRIPTS}"
@@ -17,6 +19,8 @@ _setup_presentation_actions() {
 			-it \
 			--rm \
 			--user "$(id -u):$(id -g)" \
+            -e SRC="$PRESENTATIONS_SRC" \
+            -e COMMON_STYLE="$PRESENTATIONS_COMMON_STYLE" \
 			-v ./:/opt/output \
 			"$@"
 	}

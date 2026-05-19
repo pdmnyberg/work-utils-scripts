@@ -9,7 +9,7 @@ DOC_SOURCES=$(wildcard $(DOC_SRCDIR)/*.md)
 RSCDIR?=resources
 EXT_RSCDIR?=$(RSCDIR)/external
 EXT_RESOURCES=$(wildcard $(RSCDIR)/*.url.txt)
-COMMON_STYLE?=$(SRCDIR)/meerkatsstyle.tex
+COMMON_STYLE?=$(SRCDIR)/common_style.tex
 
 
 all: \
