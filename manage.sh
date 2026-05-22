@@ -30,7 +30,7 @@ _setup_manage() {
 			-it \
 			--rm \
 			--user "$(id -u):$(id -g)" \
-			-v ./:/opt/output \
+			-v ./:/opt/output:z \
 			--workdir "/opt/output/${USE_WORKDIR}" \
 			"$@"
 	}

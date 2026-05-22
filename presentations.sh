@@ -29,16 +29,16 @@ _setup_presentation_actions() {
 
     build() {
         _run_container \
-            -v "${PRESENTATIONS_PATH}:/opt/build/presentations" \
-            -v "${SCRIPTS}/makefiles/presentations.Makefile:/opt/build/Makefile" \
+            -v "${PRESENTATIONS_PATH}:/opt/build/presentations:z" \
+            -v "${SCRIPTS}/makefiles/presentations.Makefile:/opt/build/Makefile:ro,z" \
             --workdir=/opt/build/presentations \
             "${DOCUMENT_BUILDER_NAME}" make -f ../Makefile "$@"
     }
 
     build-diagrams() {
         _run_container \
-            -v "${DIAGRAMS_PATH}:/opt/build/diagrams" \
-            -v "${SCRIPTS}/makefiles/diagrams.Makefile:/opt/build/Makefile" \
+            -v "${DIAGRAMS_PATH}:/opt/build/diagrams:z" \
+            -v "${SCRIPTS}/makefiles/diagrams.Makefile:/opt/build/Makefile:ro,z" \
             --workdir=/opt/build/diagrams \
             "${DOCUMENT_BUILDER_NAME}" make -f ../Makefile "$@"
     }
