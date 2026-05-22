@@ -13,7 +13,7 @@ COMMON_STYLE?=$(SRCDIR)/common_style.tex
 
 
 all: \
-	$(RSCDIR)/all-images \
+	$(EXT_RSCDIR)/all-images \
 	$(SOURCES:$(SRCDIR)/%.md=$(OUTDIR)/%.pdf) \
 	$(DOC_SOURCES:$(DOC_SRCDIR)/%.md=$(DOC_OUTDIR)/%.pdf)
 
@@ -21,6 +21,7 @@ all: \
 $(EXT_RSCDIR)/%: \
 	$(RSCDIR)/%.url.txt
 
+	mkdir -p "$(EXT_RSCDIR)" && \
 	SRCURL="$(RSCDIR)/$*.url.txt" && \
 	curl \
 		`head -n 1 $$SRCURL` \
@@ -62,6 +63,6 @@ $(OUTDIR)/%.pdf: \
 		-o $@ \
 		$<
 
-$(RSCDIR)/all-images: \
+$(EXT_RSCDIR)/all-images: \
 	$(patsubst $(RSCDIR)/%.url.txt,$(EXT_RSCDIR)/%,$(EXT_RESOURCES))
 	touch $@
